@@ -19,11 +19,6 @@ export class AuthService {
     return this.http.post('/auth/login', { email, password }).pipe(
       map((res: any) => {
         return res;
-        // if (res.success == true) {
-        //   return res.data;
-        // } else {
-        //   return res.errors;
-        // }
       }),
       catchError((err: HttpErrorResponse) => {
         console.log('get login err', err.message);
@@ -35,11 +30,7 @@ export class AuthService {
   register(name: string, gender: string, email: string, password: string) {
     return this.http.post('/user', { name, email, gender, password }).pipe(
       map((res: any) => {
-        // if (res.success == true) {
         return res;
-        // } else {
-        //   return null;
-        // }
       }),
       catchError((err: HttpErrorResponse) => {
         console.log('get login err', err.message);

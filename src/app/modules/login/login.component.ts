@@ -25,8 +25,6 @@ export class LoginComponent implements OnInit {
     if (localStorage.getItem("email") != null) {
       this.router.navigate(['/dashboard']);
     }
-    console.log("========>", document.cookie);
-    
   }
 
   login() {
@@ -36,10 +34,14 @@ export class LoginComponent implements OnInit {
     });
     this.dialogRef.afterClosed().subscribe((action: any) => {
       console.log("dialog afterclose", action);
+
+      // 3 cases - add, register, google
       if (action && action.type == 'add') {
 
         this.authService.login(action.data.email, action.data.password).subscribe(res => {
           console.log("login", res);
+
+          // If user found then login else register the user
           if (res.success == true) {
             this._snackBar.open('Login Successful', '', { duration: 5 * 1000 });
             localStorage.setItem('email', res.data.email);

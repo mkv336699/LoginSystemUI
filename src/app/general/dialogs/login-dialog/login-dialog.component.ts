@@ -92,7 +92,6 @@ export class LoginDialogComponent implements OnInit {
         type: 'register'
       }
       obj.data['password'] = obj.data.passwords.password;
-      // delete obj.data.passwords;
       this.dialogRef.close(obj);
     }
   }
